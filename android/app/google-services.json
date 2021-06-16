@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "765093633900",
+    "project_id": "chat-7650a",
+    "storage_bucket": "chat-7650a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:765093633900:android:0effdb6faf7909bd52dd49",
+        "android_client_info": {
+          "package_name": "com.komediantndp.chat.frontend"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "765093633900-uuusbof4jlndn6gf2gjeqt1uo4epujms.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.komediantndp.chat.frontend",
+            "certificate_hash": "94a71dd9c49f3a4f5498a8fbfef6147f5032adc7"
+          }
+        },
+        {
+          "client_id": "765093633900-no7kgvcbu0dpm0a2h9bnhhp2c561l23t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBCvVaTsKPfn9bMvDXI_Qo_mluGJSfYuaM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "765093633900-no7kgvcbu0dpm0a2h9bnhhp2c561l23t.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "765093633900-hgltks4ugsdd9mj6fas2gmmip7cir086.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.komediantndp.chat.frontend"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
