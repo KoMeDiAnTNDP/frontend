@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:formz/formz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:frontend/login/bloc/bloc.dart';
+import 'package:frontend/signup/bloc/bloc.dart';
 
-class LoginButton extends StatelessWidget {
-  LoginButton({Key? key}) : super(key: key);
+class SignUpButton extends StatelessWidget {
+  const SignUpButton({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<LoginBloc, LoginState>(
+    return BlocBuilder<SignUpBloc, SignUpState>(
       buildWhen: (prev, curr) => prev.status != curr.status,
       builder: (context, state) {
         if (state.status.isSubmissionInProgress) {
@@ -19,9 +19,9 @@ class LoginButton extends StatelessWidget {
 
         return ElevatedButton(
           onPressed: state.status.isValidated
-            ? () => context.read<LoginBloc>().add(LoginSubmitted())
-            : null,
-          child: const Text('Sign In'),
+              ? () => context.read<SignUpBloc>().add(SignUpSubmitted())
+              : null,
+          child: const Text('Sign Up'),
         );
       },
     );

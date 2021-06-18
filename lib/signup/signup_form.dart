@@ -3,22 +3,22 @@ import 'package:flutter/material.dart';
 import 'package:formz/formz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:frontend/login/bloc/bloc.dart';
-import 'package:frontend/login/view/form.dart' as login_form;
+import 'package:frontend/signup/bloc/bloc.dart';
+import 'package:frontend/signup/view/form.dart' as signup_form;
 
-class LoginForm extends StatelessWidget {
-  const LoginForm({Key? key}) : super(key: key);
+class SignUpForm extends StatelessWidget {
+  const SignUpForm({Key? key}): super(key: key);
 
   SnackBar _createSnackBar() {
     return SnackBar(
       backgroundColor: Colors.red,
-      content: const Text('The specified email or password is incorrect'),
+      content: const Text('An error occurred while creating your account'),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<LoginBloc, LoginState>(
+    return BlocListener<SignUpBloc, SignUpState>(
       listener: (context, state) {
         if (state.status.isSubmissionFailure) {
           final snackBar = _createSnackBar();
@@ -26,7 +26,7 @@ class LoginForm extends StatelessWidget {
           ScaffoldMessenger.of(context).showSnackBar(snackBar);
         }
       },
-      child: login_form.Form(),
+      child: signup_form.Form(),
     );
   }
 }

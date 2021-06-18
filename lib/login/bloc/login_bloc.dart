@@ -1,11 +1,11 @@
 import 'dart:async';
 
-import 'package:bloc/bloc.dart';
 import 'package:formz/formz.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'login_event.dart';
+import 'login_state.dart';
 import 'package:frontend/shared/inputs/models/models.dart';
-import 'package:frontend/login/bloc/login_event.dart';
-import 'package:frontend/login/bloc/login_state.dart';
 import 'package:frontend/shared/repository/authentication/authentication_repository.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
@@ -34,8 +34,8 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
         try {
           await _authenticationRepository.login(
-              email: state.email.value,
-              password: state.password.value
+            email: state.email.value,
+            password: state.password.value,
           );
 
           yield state.copyWith(status: FormzStatus.submissionSuccess);

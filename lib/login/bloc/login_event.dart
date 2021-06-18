@@ -1,6 +1,7 @@
 import 'package:frontend/shared/inputs/models/models.dart';
+import 'package:frontend/shared/bloc/form/form_event_base.dart';
 
-abstract class LoginEvent {
+abstract class LoginEvent extends FormEventBase {
   const LoginEvent();
 }
 

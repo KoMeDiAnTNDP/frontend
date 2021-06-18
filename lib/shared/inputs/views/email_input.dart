@@ -2,15 +2,17 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:frontend/login/bloc/bloc.dart';
-import 'package:frontend/shared/inputs/models/email.dart';
+import 'package:frontend/shared/bloc/form/bloc_base.dart';
 
-class EmailInput extends StatelessWidget {
-  EmailInput({Key? key}) : super(key: key);
+class EmailInput<FormBloc extends Bloc<FormEventBase, State>, State extends FormStateBase> extends StatelessWidget {
+  const EmailInput({Key? key, required FormEventBase Function(String) onChange})
+      : _onChange = onChange, super(key: key);
+
+  final FormEventBase Function(String) _onChange;
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<LoginBloc, LoginState>(
+    return BlocBuilder<FormBloc, State>(
       builder: (context, state) {
         return TextFormField(
           initialValue: state.email.value,
@@ -24,7 +26,7 @@ class EmailInput extends StatelessWidget {
           ),
           keyboardType: TextInputType.emailAddress,
           onChanged: (value) {
-            context.read<LoginBloc>().add(LoginEmailChanged(Email.dirty(value)));
+            context.read<FormBloc>().add(_onChange(value));
           },
         );
       }
