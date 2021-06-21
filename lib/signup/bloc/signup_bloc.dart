@@ -22,34 +22,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
     } else if (event is SignUpConfirmedPasswordChanged) {
       yield _mapConfirmedPasswordChangedToState(event, state);
     } else if (event is SignUpSubmitted) {
-      final email = Email.dirty(state.email.value);
-      final password = Password.dirty(state.password.value);
-      final confirmedPassword = ConfirmedPassword.dirty(
-        password: state.password.value,
-        value: state.confirmedPassword.value
-      );
-
-      yield state.copyWith(
-        email: email,
-        password: password,
-        confirmedPassword: confirmedPassword,
-        status: Formz.validate([email, password, confirmedPassword]),
-      );
-
-      if (state.status.isValidated) {
-        yield state.copyWith(status: FormzStatus.submissionInProgress);
-
-        try {
-          await _authenticationRepository.signUp(
-            email: state.email.value,
-            password: state.password.value,
-          );
-
-          yield state.copyWith(status: FormzStatus.submissionSuccess);
-        } on Exception {
-          yield state.copyWith(status: FormzStatus.submissionFailure);
-        }
-      }
+      yield* _mapSignUpSubmittedToState(event, state);
     }
   }
 
@@ -81,5 +54,36 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
       confirmedPassword: confirmedPassword,
       status: Formz.validate([state.email, state.password, confirmedPassword]),
     );
+  }
+
+  Stream<SignUpState> _mapSignUpSubmittedToState(SignUpSubmitted event, SignUpState state) async* {
+    final email = Email.dirty(state.email.value);
+    final password = Password.dirty(state.password.value);
+    final confirmedPassword = ConfirmedPassword.dirty(
+        password: state.password.value,
+        value: state.confirmedPassword.value
+    );
+
+    yield state.copyWith(
+      email: email,
+      password: password,
+      confirmedPassword: confirmedPassword,
+      status: Formz.validate([email, password, confirmedPassword]),
+    );
+
+    if (state.status.isValidated) {
+      yield state.copyWith(status: FormzStatus.submissionInProgress);
+
+      try {
+        await _authenticationRepository.signUp(
+          email: state.email.value,
+          password: state.password.value,
+        );
+
+        yield state.copyWith(status: FormzStatus.submissionSuccess);
+      } on Exception {
+        yield state.copyWith(status: FormzStatus.submissionFailure);
+      }
+    }
   }
 }

@@ -1,7 +1,7 @@
 import 'package:formz/formz.dart';
-import 'package:frontend/shared/bloc/form/form_state_base.dart';
 
 import 'package:frontend/shared/inputs/models/models.dart';
+import 'package:frontend/shared/bloc/form/form_state_base.dart';
 
 class LoginState extends FormStateBase {
   const LoginState({

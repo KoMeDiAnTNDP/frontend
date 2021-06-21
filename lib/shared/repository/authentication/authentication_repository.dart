@@ -18,6 +18,8 @@ class AuthenticationRepository {
     await _firebaseAuth.createUserWithEmailAndPassword(email: email, password: password);
   }
 
+  Future<String?> get jwtToken async => await _firebaseAuth.currentUser?.getIdToken();
+
   Future<void> login({required String email, required String password}) async {
     await _firebaseAuth.signInWithEmailAndPassword(email: email, password: password);
   }
