@@ -51,10 +51,5 @@ class ChatPage extends StatelessWidget {
         );
       },
     );
-
-    // return BlocProvider(
-    //   create: (_) => ChatBloc(),
-    //   child: Chat(socket: socket),
-    // );
   }
 }

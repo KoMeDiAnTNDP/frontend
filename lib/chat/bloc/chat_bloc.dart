@@ -93,4 +93,13 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
 
     return state.copyWith(messages: copyMessages);
   }
+
+  @override
+  Future<void> close() {
+    if (!_socket.disconnected) {
+      _socket.dispose();
+    }
+
+    return super.close();
+  }
 }
